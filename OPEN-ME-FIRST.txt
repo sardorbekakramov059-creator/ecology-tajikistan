@@ -1,0 +1,10 @@
+SAYTNI ISHGA TUSHIRISH
+
+1. ZIP faylni kompyuteringizga yuklab oling.
+2. ZIP ustiga o‘ng tugma bosing va “Extract All / Извлечь все” ni tanlang.
+3. Ochilgan papkada start-site.bat faylini ikki marta bosing.
+4. Brauzerda http://127.0.0.1:8000 manzili ochiladi.
+
+Agar Python o‘rnatilmagan bo‘lsa, index.html faylini ikki marta bosib ochishingiz mumkin. Xarita uchun internet ulanishi talab qilinadi. Boshqa bo‘limlar xaritasiz ham ishlaydi.
+
+MUHIM: HTML, style.css va script.js bir papkada qolishi kerak. ZIP ichidan turib index.html faylini ochmang.

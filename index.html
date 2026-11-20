@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+
+<html dir="ltr" lang="tg">
+<head>
+<!-- Маълумоти сарлавҳа ва мета-тегҳо -->
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Портали иттилоотӣ оид ба экологияи Тоҷикистон: захираҳои об, пиряхҳо, гуногунии биологӣ, минтақаҳои муҳофизатшаванда ва харитаи интерактивӣ." name="description"/>
+<meta content="экологияи Тоҷикистон, пиряхҳои Тоҷикистон, кӯлҳои Помир, Искандаркӯл, мамнуъгоҳҳо, захираҳои об, харитаи экологӣ" name="keywords"/>
+<title>Экологияи Тоҷикистон | Экология Таджикистана | Tojikiston ekologiyasi</title>
+<!-- Пайванди файли услубҳо (CSS) -->
+<link href="style.css" rel="stylesheet"/>
+<!-- Шрифти зебои Nunito аз Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<!-- Нишонаҳои Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" rel="stylesheet"/></head>
+<body>
+<!-- ================================================================
+     НАВИГАТСИЯ (NAVBAR) — ГУЗАРИШ БА САҲИФАҲО ДАР ДАРУНИ СОМОНА
+================================================================ -->
+<nav class="navbar" id="navbar">
+<div class="nav-container">
+<!-- Нишони рамзӣ ва тугмаи бозгашт ба саҳифаи асосӣ -->
+<a class="nav-brand" href="#home" onclick="switchPage('home', event)">
+<span class="logo-icon">🌱</span>
+<span class="brand-text">Экологияи Тоҷикистон</span>
+</a>
+<!-- Пайвандҳои дохилии меню — ҳар як тугма саҳифаи мустақилро дар дохили сомона мекушояд -->
+<ul class="nav-links" id="navLinks">
+<li><button class="nav-tab active" data-page="home"><i class="fas fa-home"></i> Асосӣ</button></li>
+<li><button class="nav-tab" data-page="vaziyat"><i class="fas fa-chart-line"></i> Вазъият</button></li>
+<li><button class="nav-tab" data-page="mushkilot"><i class="fas fa-exclamation-triangle"></i> Мушкилот</button></li>
+<li><button class="nav-tab" data-page="rohihall"><i class="fas fa-seedling"></i> Роҳи Ҳалл</button></li>
+<li><button class="nav-tab" data-page="hayvonot"><i class="fas fa-paw"></i> Ҳайвонот</button></li>
+<li><button class="nav-tab" data-page="gallery"><i class="fas fa-images"></i> Галерея</button></li>
+<li><button class="nav-tab" data-page="xarita"><i class="fas fa-map-marked-alt"></i> Харита</button></li>
+<li><button class="nav-tab" data-page="navigariho"><i class="fas fa-newspaper"></i> Навигариҳо</button></li>
+<li><button class="nav-tab" data-page="tamos"><i class="fas fa-envelope"></i> Тамос</button></li>
+</ul>
+<!-- Нишондиҳандаи ҳолати саҳифа -->
+
+<div class="language-picker" aria-label="Интихоби забон">
+  <label for="siteLanguage" class="sr-only">Забон / Til / Язык</label>
+  <select id="siteLanguage" aria-label="Забон / Til / Язык">
+    <option value="tg">Тоҷикӣ 🇹🇯</option>
+    <option value="uz">O‘zbekcha 🇺🇿</option>
+    <option value="ru">Русский 🇷🇺</option>
+  </select>
+</div>
+
+<div class="nav-page-badge" id="navCurrentBadge">
+<span>Саҳифа: <strong>Асосӣ</strong></span>
+</div>
+<!-- Тугмаи кушодани меню дар телефонҳои мобилӣ -->
+<button aria-label="Кушодани меню" class="hamburger" id="hamburger" onclick="menuToggle()">
+<i class="fas fa-bars"></i>
+</button>
+</div>
+</nav>
+<!-- ================================================================
+     КОНТЕЙНЕРИ САҲИФАҲОИ ДОХИЛӢ (SPA PAGES CONTAINER)
+================================================================ -->
+<main class="pages-wrapper">
+<!-- ==============================================================
+       САҲИФАИ 1: АСОСӢ (HOME)
+  ============================================================== -->
+<div class="site-page active" id="page-home">
+<!-- Қисмати Муаррифӣ (Hero) -->
+<section class="hero">
+<div class="particles" id="particles"></div>
+<div class="hero-content">
+<div class="hero-tag animate-bounce-in">
+<i class="fas fa-shield-alt"></i> Ҳифзи Сарватҳои Табиии Тоҷикистон
+        </div>
+<h1 class="hero-title animate-slide-up">
+          Экологияи <span class="text-gradient">Тоҷикистон</span><br/>
+          — Табиати Нодир ва Ояндаи Сабз
+        </h1>
+<p class="hero-subtitle animate-slide-up delay-1">Тоҷикистон сарчашмаи муҳими оби Осиёи Марказӣ ва макони кӯҳҳои баланд, пиряхҳо ва экосистемаҳои нодир аст. Ин портал маълумоти санҷидашавандаро дар бораи табиат ва ҳифзи муҳити зист ҷамъ мекунад.</p>
+<!-- Оморҳои зиндаи оғозӣ -->
+<div class="hero-stats animate-fade-in delay-2">
+<div class="stat-card" onclick="switchPage('vaziyat')">
+<span class="stat-icon"><i class="fas fa-water"></i></span>
+<div class="stat-num-box"><span class="stat-num" data-display="60" data-target="60">0</span><span class="stat-unit">%</span></div>
+<span class="stat-label">Ҳиссаи захираҳои обии Осиёи Марказӣ дар Тоҷикистон</span>
+</div>
+<div class="stat-card" onclick="switchPage('vaziyat')">
+<span class="stat-icon"><i class="fas fa-mountain"></i></span>
+<div class="stat-num-box"><span class="stat-num" data-display="93" data-target="93">0</span><span class="stat-unit">%</span></div>
+<span class="stat-label">Ҳудуди кӯҳсори кишвар</span>
+</div>
+<div class="stat-card" onclick="switchPage('mushkilot')">
+<span class="stat-icon"><i class="fas fa-snowflake"></i></span>
+<div class="stat-num-box"><span class="stat-num" data-display="14 000" data-target="14000">0</span></div>
+<span class="stat-label">Тақрибан 14 000 пирях дар арзёбии даҳсолаҳои пеш</span>
+</div>
+<div class="stat-card" onclick="switchPage('hayvonot')">
+<span class="stat-icon"><i class="fas fa-paw"></i></span>
+<div class="stat-num-box"><span class="stat-num" data-display="21.6" data-target="21.6">0</span><span class="stat-unit">%</span></div>
+<span class="stat-label">Ҳудуди минтақаҳои муҳофизатшаванда (2023)</span>
+</div>
+</div><p class="stats-source-note">Манбаъҳо: Вазорати корҳои хориҷии ҶТ ва Атласи UNEP, 2025. 14 000 — арзёбии қаблии пиряхҳо; UNEP хабар медиҳад, ки зиёда аз 1 000 пирях аллакай пурра аз байн рафтааст.</p>
+<!-- Тугмаҳои гузариш ба бахшҳои дигар дар дохили сомона -->
+<div class="hero-btns animate-fade-in delay-3">
+<button class="btn-main" onclick="switchPage('gallery')">
+<i class="fas fa-images"></i> Галереяи Аксҳо
+          </button>
+<button class="btn-outline" onclick="switchPage('mushkilot')">
+<i class="fas fa-exclamation-triangle"></i> Мушкилоти Асосӣ
+          </button>
+<button class="btn-green" onclick="switchPage('tamos')">
+<i class="fas fa-hands-helping"></i> Ҳамроҳ шудан
+          </button>
+</div>
+</div>
+<!-- Акси кӯҳҳои Помир бо нишони шаффоф -->
+<div class="hero-visual animate-fade-in delay-2">
+<div class="hero-image-wrapper">
+<img alt="Кӯли Искандаркӯл дар кӯҳҳои Фони Тоҷикистон" class="hero-main-img" decoding="async" loading="eager" fetchpriority="high" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Tajikistan._Iskander-Kul.jpg/1280px-Tajikistan._Iskander-Kul.jpg"/>
+<div class="hero-image-badge">
+<i class="fas fa-mountain"></i>
+<div>
+<strong>Искандаркӯл — вилояти Суғд</strong>
+<span>Кӯли кӯҳии воқеъ дар кӯҳҳои Фон</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Бахши зудгузар ба саҳифаҳои дигар (Quick Navigation Cards) -->
+<section class="home-quick-links section">
+<div class="container">
+<div class="section-head">
+<span class="sec-tag"><i class="fas fa-compass"></i> Саҳифаҳои Сомона</span>
+<h2>Бахши Дилхоҳатонро Интихоб Кунед</h2>
+<p>Барои гузаштан ба ҳар як бахш тугмаи онро пахш намоед</p>
+</div>
+<div class="quick-grid">
+<div class="quick-card" onclick="switchPage('vaziyat')">
+<div class="quick-img-wrap">
+<img alt="Пиряхи Федченко дар Помир" decoding="async" loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Fedchenko_Glacier.jpg"/>
+<span class="quick-badge">Таҳлил</span>
+</div>
+<div class="quick-body">
+<h3><i class="fas fa-chart-line"></i> Вазъияти Имрӯза</h3>
+<p>Захираҳои об, яхчоли Федченко, ҷангалҳои арча ва нерӯи сабзи Тоҷикистон.</p>
+<span class="quick-link">Кушодани саҳифа <i class="fas fa-arrow-right"></i></span>
+</div>
+</div>
+<div class="quick-card" onclick="switchPage('mushkilot')">
+<div class="quick-img-wrap">
+<img alt="Пиряхи Федченко дар Тоҷикистон" decoding="async" loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Fedchenko_Glacier.jpg"/>
+<span class="quick-badge danger-badge">Таҳдидҳо</span>
+</div>
+<div class="quick-body">
+<h3><i class="fas fa-exclamation-triangle"></i> Мушкилоти Асосӣ</h3>
+<p>Обшавии босуръати яхчолҳо, дуди зимистона, партовҳои пластикӣ ва эрозия.</p>
+<span class="quick-link">Кушодани саҳифа <i class="fas fa-arrow-right"></i></span>
+</div>
+</div>
+<div class="quick-card" onclick="switchPage('rohihall')">
+<div class="quick-img-wrap">
+<div class="visual-placeholder"><span class="visual-icon">🌱</span><span>Иқдоми экологӣ — тасвири намунавии маҳаллӣ илова нашудааст</span></div>
+<span class="quick-badge good-badge">Амалҳо</span>
+</div>
+<div class="quick-body">
+<h3><i class="fas fa-seedling"></i> Роҳҳои Ҳалл</h3>
+<p>Нерӯи офтобӣ, маъракаи дарахтшинонӣ, коркарди партов ва нақлиёти сабз.</p>
+<span class="quick-link">Кушодани саҳифа <i class="fas fa-arrow-right"></i></span>
+</div>
+</div>
+<div class="quick-card" onclick="switchPage('hayvonot')">
+<div class="quick-img-wrap">
+<img alt="Кӯҳҳои Помир — муҳити зисти ҳайвоноти баландкӯҳи Тоҷикистон" decoding="async" loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Pamir_Mountains_%286%29.jpg/1280px-Pamir_Mountains_%286%29.jpg"/>
+<span class="quick-badge warn-badge">Китоби Сурх</span>
+</div>
+<div class="quick-body">
+<h3><i class="fas fa-paw"></i> Ҳайвоноти Нодир</h3>
+<p>Паланги барфӣ, арғалӣ (Марко Поло), хирси қаҳваранг, шоҳуқоб ва оҳуи бухороӣ.</p>
+<span class="quick-link">Кушодани саҳифа <i class="fas fa-arrow-right"></i></span>
+</div>
+</div>
+<div class="quick-card" onclick="switchPage('gallery')">
+<div class="quick-img-wrap">
+<img alt="Кӯли Искандаркӯл дар кӯҳҳои Фон, вилояти Суғд" decoding="async" loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Tajikistan._Iskander-Kul.jpg/1280px-Tajikistan._Iskander-Kul.jpg"/>
+<span class="quick-badge">Аксҳо</span>
+</div>
+<div class="quick-body">
+<h3><i class="fas fa-images"></i> Галереяи Аксҳо</h3>
+<p>Искандаркӯл, Помир, кӯли Сарез ва Ҳафткӯл дар тасвирҳои баландсифат.</p>
+<span class="quick-link">Кушодани саҳифа <i class="fas fa-arrow-right"></i></span>
+</div>
+</div>
+<div class="quick-card" onclick="switchPage('xarita')">
+<div class="quick-img-wrap">
+<img alt="Кӯли Сарез дар кӯҳҳои Помир" decoding="async" loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Lake_Sarez%2C_Tajikistan_%282077%29.jpg/1280px-Lake_Sarez%2C_Tajikistan_%282077%29.jpg"/>
+<span class="quick-badge">Минтақаҳо</span>
+</div>
+<div class="quick-body">
+<h3><i class="fas fa-map-marked-alt"></i> Харитаи Экологӣ</h3>
+<p>Вилоятҳои Суғд, Бадахшон, Хатлон ва НТҶТ бо маълумоти муфассали экологӣ.</p>
+<span class="quick-link">Кушодани саҳифа <i class="fas fa-arrow-right"></i></span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Поёни саҳифаи аввал бо гузариш ба саҳифаи баъдӣ -->
+<div class="page-footer-nav container">
+<span></span>
+<button class="btn-next-page" onclick="switchPage('vaziyat')">
+        Саҳифаи Баъдӣ: Вазъияти Экологӣ <i class="fas fa-arrow-right"></i>
+</button>
+</div>
+</div>
+<!-- ==============================================================
+       САҲИФАИ 2: ВАЗЪИЯТИ ИМРӮЗАИ ЭКОЛОГИЯ (VAZIYAT)
+  ============================================================== -->
+<div class="site-page" id="page-vaziyat">
+<div class="page-header-banner">
+<div class="container">
+<div class="page-breadcrumb">
+<span onclick="switchPage('home')">Асосӣ</span> <i class="fas fa-angle-right"></i> <strong>Вазъияти Экологӣ</strong>
+</div>
+<h1>Ҳолати Экологии Тоҷикистон</h1>
+<p>Маълумоти воқеӣ оид ба манобеи об, яхчолҳо, ҷангалзор ва барқи сабзи кишвар</p>
+</div>
+</div>
+<section class="section">
+<div class="container">
+<div class="cards-grid">
+<div class="info-card green animate-on-scroll detail-card" data-detail="water" role="button" tabindex="0">
+<div class="card-img-wrap">
+<img alt="Обанбори Норак дар дарёи Вахш, вилояти Хатлон" class="card-thumb" decoding="async" loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Nurek_Reservoir%2C_Tajikistan.jpg/1280px-Nurek_Reservoir%2C_Tajikistan.jpg"/>
+<span class="card-status good">Захираи фаровон</span>
+</div>
+<div class="card-body">
+<div class="card-top-icon"><i class="fas fa-tint"></i> <strong>Оби Ошомиданӣ</strong></div>
+<h3>Дарёҳо ва кӯлҳои Тоҷикистон</h3>
+<p>Тоҷикистон шабакаи бузурги дарёҳо ва тақрибан 1 300 кӯл дорад. Дарёҳои Панҷ, Вахш, Зарафшон ва Сирдарё барои таъмини обу энергетикаи минтақа аҳаммияти калон доранд.</p>
+<div class="card-metric">
+<span class="card-metric-num">60%</span>
+<span class="card-metric-label">Ҳиссаи захираҳои обии Осиёи Марказӣ, ки дар Тоҷикистон ташаккул меёбанд</span>
+</div>
+</div>
+</div>
+<div class="info-card blue animate-on-scroll delay-1 detail-card" data-detail="glaciers" role="button" tabindex="0">
+<div class="card-img-wrap">
+<img alt="Яхчолҳои азими Помир" class="card-thumb" decoding="async" loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Fedchenko_Glacier.jpg"/>
+<span class="card-status warn">Ниёзманди ҳифз</span>
+</div>
+<div class="card-body">
+<div class="card-top-icon"><i class="fas fa-igloo"></i> <strong>Яхчолҳои Азим</strong></div>
+<h3>Пиряхи Федченко ва пиряхҳои Помир</h3>
+<p>Маълумоти UNEP (2025) аз тақрибан 14 000 пиряхи таърихӣ ёд мекунад; зиёда аз 1 000 пирях дар даҳсолаҳои охир пурра аз байн рафтаанд. Пиряхҳо яке аз сарчашмаҳои асосии ҷараёни об мебошанд.</p>
+<div class="card-metric">
+<span class="card-metric-num">14 000</span>
+<span class="card-metric-label">Пирях дар арзёбии UNEP; зиёда аз 1 000-то нобуд шудааст</span>
+</div>
+</div>
+</div>
+<div class="info-card teal animate-on-scroll delay-2 detail-card" data-detail="forests" role="button" tabindex="0">
+<div class="card-img-wrap">
+<img alt="Ҷангали туғайи мамнуъгоҳи Бешаи палангон дар вилояти Хатлон" decoding="async" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Tigrovaya_Balka_Elaeagnus_Grove.jpg?width=1000"/><span class="card-status good">Сарвати миллӣ</span>
+</div>
+<div class="card-body">
+<div class="card-top-icon"><i class="fas fa-tree"></i> <strong>Ҷангалҳои Кӯҳӣ</strong></div>
+<h3>Минтақаҳои ҷангалу табиӣ</h3>
+<p>Дар Тоҷикистон экосистемаҳои гуногун — аз ҷангалҳои арчаи кӯҳӣ то ҷангалҳои туғайи ҷануб — мавҷуданд. Мамнуъгоҳи «Бешаи палангон» намунаи муҳими ҷангали туғай мебошад.</p>
+<div class="card-metric">
+<span class="card-metric-num">21.6%</span>
+<span class="card-metric-label">Ҳиссаи ҳудуди кишвар, ки соли 2023 минтақаи муҳофизатшаванда буд</span>
+</div>
+</div>
+</div>
+<div class="info-card orange animate-on-scroll delay-3 detail-card" data-detail="hydropower" role="button" tabindex="0">
+<div class="card-img-wrap">
+<img alt="Нерӯгоҳи обии Норак" class="card-thumb" decoding="async" loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Nurek_Reservoir%2C_Tajikistan.jpg/1280px-Nurek_Reservoir%2C_Tajikistan.jpg"/>
+<span class="card-status good">Пешсафи ҷаҳон</span>
+</div>
+<div class="card-body">
+<div class="card-top-icon"><i class="fas fa-bolt"></i> <strong>Энергияи Сабз</strong></div>
+<h3>Нерӯи барқи обӣ</h3>
+<p>Нерӯгоҳҳои обӣ дар низоми энергетикии Тоҷикистон нақши асосӣ доранд. UNEP қайд мекунад, ки нерӯи обӣ то 95 фоизи барқи кишварро таъмин мекунад; тағйирёбии ҷараёни об ба амнияти энергетикӣ низ таъсир мерасонад.</p>
+<div class="card-metric">
+<span class="card-metric-num">то 95%</span>
+<span class="card-metric-label">Ҳиссаи барқ аз нерӯи обӣ — маълумоти UNEP, 2025</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Навигатсияи байни саҳифаҳо -->
+<div class="page-footer-nav container">
+<button class="btn-prev-page" onclick="switchPage('home')">
+<i class="fas fa-arrow-left"></i> Ба Саҳифаи Асосӣ
+      </button>
+<button class="btn-next-page" onclick="switchPage('mushkilot')">
+        Саҳифаи Баъдӣ: Мушкилот <i class="fas fa-arrow-right"></i>
+</button>
+</div>
+</div>
+<!-- ==============================================================
+       САҲИФАИ 3: МУШКИЛОТИ АСОСИИ ЭКОЛОГӢ (MUSHKILOT)
+  ============================================================== -->
+<div class="site-page" id="page-mushkilot">
+<div class="page-header-banner">
+<div class="container">
+<div class="page-breadcrumb">
+<span onclick="switchPage('home')">Асосӣ</span> <i class="fas fa-angle-right"></i> <strong>Мушкилоти Экологӣ</strong>
+</div>
+<h1>Мушкилоти Асосии Экологии Тоҷикистон</h1>
+<p>Таҳдидҳои воқеӣ ба табиат ва масъалаҳое, ки ба ҳалли фаврӣ ниёз доранд</p>
+</div>
+</div>
+<section class="section">
+<div class="container">
+<div class="problems-grid">
+<div class="problem-card animate-on-scroll detail-card" data-detail="glacier-loss" role="button" tabindex="0">
+<div class="prob-img-container">
+<img alt="Обшавии яхчолҳо" class="prob-img" decoding="async" loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Fedchenko_Glacier.jpg"/>
+<span class="prob-level danger-bg">Хатари Баланд</span>
+</div>
+<div class="prob-content">
+<div class="prob-title-row">
+<span class="prob-num">01</span>
+<h3>Обшавии пиряхҳо</h3>
+</div>
+<p>UNEP дар соли 2025 хабар дод, ки зиёда аз 1 000 пиряхи Тоҷикистон дар даҳсолаҳои охир пурра аз байн рафтааст. Коҳиши ях захираи мавсимии обро тағйир дода, хавфи тағйирёбии ҷараёни дарёҳоро зиёд мекунад.</p>
+<div class="evidence-note">UNEP, 2 сентябри 2025: зиёда аз 1 000 пирях аз байн рафтааст</div>
+</div>
+</div>
+<div class="problem-card animate-on-scroll delay-1 detail-card" data-detail="urban-air" role="button" tabindex="0">
+<div class="prob-img-container">
+<div class="visual-placeholder"><span class="visual-icon">🌿</span><span>Тасвири маҳаллӣ ҳанӯз санҷида нашудааст</span></div>
+<span class="prob-level warn-bg">Хатари Миёна</span>
+</div>
+<div class="prob-content">
+<div class="prob-title-row">
+<span class="prob-num">02</span>
+<h3>Олудашавии ҳавои шаҳрҳо</h3>
+</div>
+<p>Сифати ҳаво аз нақлиёт, фаъолияти саноатӣ, гармидиҳии хонаҳо, чангу ғубор ва шароити обу ҳаво вобаста аст. Барои арзёбии дуруст бояд нишондиҳандаҳои истгоҳҳои PM2.5/PM10 ва давраи ченкунӣ нишон дода шаванд.</p>
+<div class="evidence-note">Рақами ягонаи фоизӣ бидуни истгоҳи ченкунӣ нашр намешавад</div>
+</div>
+</div>
+<div class="problem-card animate-on-scroll delay-2 detail-card" data-detail="waste" role="button" tabindex="0">
+<div class="prob-img-container">
+<div class="visual-placeholder"><span class="visual-icon">🌿</span><span>Тасвири маҳаллӣ ҳанӯз санҷида нашудааст</span></div>
+<span class="prob-level warn-bg">Мушкили Муосир</span>
+</div>
+<div class="prob-content">
+<div class="prob-title-row">
+<span class="prob-num">03</span>
+<h3>Партовҳои сахти маишӣ</h3>
+</div>
+<p>Идоракунии партовҳо ҷудокунии мавод, ҷамъоварии мунтазам, коркарди такрорӣ ва ҷойгиркунии бехатарро талаб мекунад. Дар ин портал миқдори миллӣ бе манбаи омории нав оварда намешавад.</p>
+<div class="evidence-note">Омор бояд аз ҳисоботи расмии идоракунии партовҳо гирифта шавад</div>
+</div>
+</div>
+<div class="problem-card animate-on-scroll delay-3 detail-card" data-detail="soil-erosion" role="button" tabindex="0">
+<div class="prob-img-container">
+<div class="visual-placeholder"><span class="visual-icon">🌿</span><span>Тасвири маҳаллӣ ҳанӯз санҷида нашудааст</span></div>
+<span class="prob-level danger-bg">Хатари Ҷиддӣ</span>
+</div>
+<div class="prob-content">
+<div class="prob-title-row">
+<span class="prob-num">04</span>
+<h3>Эрозияи хок ва таназзули замин</h3>
+</div>
+<p>Нишебиҳои кӯҳӣ ҳангоми чаронидани аз ҳад зиёд, кам шудани растанипӯш ва боришоти шадид осебпазиранд. Нигоҳ доштани қабати растанӣ, чарогоҳбандӣ ва корҳои зиддиэрозиявӣ аз тадбирҳои муҳиманд.</p>
+<div class="evidence-note">Хавф аз минтақа ба минтақа фарқ мекунад; фоизи умумӣ дода намешавад</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="page-footer-nav container">
+<button class="btn-prev-page" onclick="switchPage('vaziyat')">
+<i class="fas fa-arrow-left"></i> Бахши Вазъият
+      </button>
+<button class="btn-next-page" onclick="switchPage('rohihall')">
+        Саҳифаи Баъдӣ: Роҳи Ҳалл <i class="fas fa-arrow-right"></i>
+</button>
+</div>
+</div>
+<!-- ==============================================================
+       САҲИФАИ 4: РОҲҲОИ ҲАЛЛИ МУШКИЛОТ (ROHIHALL)
+  ============================================================== -->
+<div class="site-page" id="page-rohihall">
+<div class="page-header-banner">
+<div class="container">
+<div class="page-breadcrumb">
+<span onclick="switchPage('home')">Асосӣ</span> <i class="fas fa-angle-right"></i> <strong>Роҳи Ҳалл</strong>
+</div>
+<h1>Роҳҳои Ҳалли Мушкилоти Экологӣ</h1>
+<p>Иқдомҳо ва тадбирҳои воқеӣ барои сабз нигоҳ доштани диёри маҳбубамон</p>
+</div>
+</div>
+<section class="section">
+<div class="container">
+<div class="solutions-grid">
+<div class="sol-card animate-on-scroll detail-card" data-detail="solar" role="button" tabindex="0">
+<div class="sol-img-wrap">
+<div class="visual-placeholder"><span class="visual-icon">☀️</span><span>Иқдоми экологӣ — тасвири намунавии маҳаллӣ илова нашудааст</span></div>
+</div>
+<div class="sol-body">
+<span class="sol-tag">Энергияи Беохир</span>
+<h3>Энергияи офтобӣ дар маҳалҳои дурдаст</h3>
+<p>Панелҳои офтобӣ метавонанд барои хонаҳо, мактабҳо ва нуқтаҳои хизматрасонии аз шабака дур манбаи иловагии барқ бошанд. Лоиҳа бояд бо таҳлили иқлим, нигоҳдорӣ ва хароҷоти давраи истифода тарҳрезӣ шавад.</p>
+<ul class="sol-list"><li><i class="fas fa-check"></i> Арзёбии офтобгирии маҳал</li><li><i class="fas fa-check"></i> Интихоби таҷҳизоти сертификатдор</li><li><i class="fas fa-check"></i> Нақшаи нигоҳдорӣ ва коркарди батареяҳо</li></ul>
+</div>
+</div>
+<div class="sol-card animate-on-scroll delay-1 detail-card" data-detail="restoration" role="button" tabindex="0">
+<div class="sol-img-wrap">
+<div class="visual-placeholder"><span class="visual-icon">🌱</span><span>Иқдоми экологӣ — тасвири намунавии маҳаллӣ илова нашудааст</span></div>
+</div>
+<div class="sol-body">
+<span class="sol-tag">Барномаи Миллӣ</span>
+<h3>Барқарорсозии ҷангал ва чарогоҳ</h3>
+<p>Шинонидани ниҳол танҳо дар ҷойи мувофиқ ва бо нигоҳубини баъдӣ натиҷа медиҳад. Навъҳои маҳаллӣ, барқарорсозии табиӣ ва пешгирии чаронидани аз ҳад зиёд бояд дар мадди аввал бошанд.</p>
+<ul class="sol-list"><li><i class="fas fa-check"></i> Интихоби навъҳои маҳаллӣ</li><li><i class="fas fa-check"></i> Нигоҳубини ниҳол баъд аз шинонидан</li><li><i class="fas fa-check"></i> Ҳифзи хок ва чарогоҳ</li></ul>
+</div>
+</div>
+<div class="sol-card animate-on-scroll delay-2 detail-card" data-detail="recycling" role="button" tabindex="0">
+<div class="sol-img-wrap">
+<div class="visual-placeholder"><span class="visual-icon">♻️</span><span>Иқдоми экологӣ — тасвири намунавии маҳаллӣ илова нашудааст</span></div>
+</div>
+<div class="sol-body">
+<span class="sol-tag">Иқтисоди Даврӣ</span>
+<h3>Ҷудокунии партов ва истифодаи такрорӣ</h3>
+<p>Ҷудокунии партов дар манбаъ, ҷамъоварии ҷудогона ва ҳамкорӣ бо коркардкунандагон роҳҳои амалӣ мебошанд. Натиҷа бояд бо вазни партови воқеан коркардшуда ҳисоб карда шавад.</p>
+<ul class="sol-list"><li><i class="fas fa-check"></i> Ҷудокунии коғаз, пластик ва шиша</li><li><i class="fas fa-check"></i> Кам кардани маҳсулоти яккарата</li><li><i class="fas fa-check"></i> Ҳисоб кардани ҳаҷми коркарди воқеӣ</li></ul>
+</div>
+</div>
+<div class="sol-card animate-on-scroll delay-3 detail-card" data-detail="clean-transport" role="button" tabindex="0">
+<div class="sol-img-wrap">
+<div class="visual-placeholder"><span class="visual-icon">☀️</span><span>Иқдоми экологӣ — тасвири намунавии маҳаллӣ илова нашудааст</span></div>
+</div>
+<div class="sol-body">
+<span class="sol-tag">Шаҳри Сабз</span>
+<h3>Нақлиёти шаҳрии камифлос</h3>
+<p>Такмили нақлиёти ҷамъиятӣ, пиёдагардӣ, велосипедронӣ ва навсозии паркҳои нақлиётӣ метавонад партовҳои маҳаллиро кам кунад. Натиҷа аз таркиби нерӯи барқ ва сифати идоракунии нақлиёт низ вобаста аст.</p>
+<ul class="sol-list"><li><i class="fas fa-check"></i> Беҳтар кардани нақлиёти ҷамъиятӣ</li><li><i class="fas fa-check"></i> Пиёдагардӣ ва роҳҳои велосипед</li><li><i class="fas fa-check"></i> Мониторинги сифати ҳаво</li></ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="page-footer-nav container">
+<button class="btn-prev-page" onclick="switchPage('mushkilot')">
+<i class="fas fa-arrow-left"></i> Бахши Мушкилот
+      </button>
+<button class="btn-next-page" onclick="switchPage('hayvonot')">
+        Саҳифаи Баъдӣ: Ҳайвоноти Нодир <i class="fas fa-arrow-right"></i>
+</button>
+</div>
+</div>
+<!-- ==============================================================
+       САҲИФАИ 5: ҲАЙВОНОТИ НОДИР (HAYVONOT)
+  ============================================================== -->
+<div class="site-page" id="page-hayvonot">
+<div class="page-header-banner">
+<div class="container">
+<div class="page-breadcrumb">
+<span onclick="switchPage('home')">Асосӣ</span> <i class="fas fa-angle-right"></i> <strong>Ҳайвоноти Нодир</strong>
+</div>
+<h1>Ҳайвоноти Нодири Тоҷикистон (Китоби Сурх)</h1>
+<p>Шоҳони кӯҳсори Помир ва олами нотакрори ҳайвоноти табиати кишвар</p>
+</div>
+</div>
+<section class="section">
+<div class="container">
+<div class="animals-grid">
+<div class="animal-card animate-on-scroll detail-card" data-detail="snow-leopard" role="button" tabindex="0">
+<div class="animal-photo-wrap">
+<div class="visual-placeholder animal-placeholder"><span class="visual-icon">🌿</span><span>Муҳити зисти ин намуд дар Тоҷикистон — тасвири худи ҳайвон ҳанӯз тасдиқ нашудааст</span></div><span class="animal-badge danger-badge">Муҳофизати Қатъӣ</span>
+</div>
+<div class="animal-details">
+<h3>Паланги Барфӣ (Ирбис)</h3>
+<span class="animal-latin">Panthera uncia</span>
+<p>Шоҳи бебаҳси кӯҳҳои баланди Помир ва Ҳисор. Рамзи шукӯҳ ва тозагии табиати кӯҳсор аст. Маълумоти шумора бе санади расмии нав дар ин саҳифа нишон дода намешавад.</p>
+<div class="animal-footer">
+<span class="animal-count"><i class="fas fa-book-open"></i> Барои шумора ба мониторинг ва Китоби Сурх муроҷиат кунед</span>
+<span class="animal-location"><i class="fas fa-map-marker-alt"></i> Помир, Бадахшон</span>
+</div>
+</div>
+</div>
+<div class="animal-card animate-on-scroll delay-1 detail-card" data-detail="argali" role="button" tabindex="0">
+<div class="animal-photo-wrap">
+<div class="visual-placeholder animal-placeholder"><span class="visual-icon">🌿</span><span>Муҳити зисти ин намуд дар Тоҷикистон — тасвири худи ҳайвон ҳанӯз тасдиқ нашудааст</span></div><span class="animal-badge warn-badge">Дар Хатар</span>
+</div>
+<div class="animal-details">
+<h3>Арғалӣ (Марко Поло)</h3>
+<span class="animal-latin">Ovis ammon polii</span>
+<p>Бузургтарин гӯсфанди ваҳшии рӯи замин бо шохҳои дароз ва печдарпечи нотакрор дар баландкӯҳҳо сайругашт мекунад. Маълумоти шумора бе санади расмии нав дар ин саҳифа нишон дода намешавад.</p>
+<div class="animal-footer">
+<span class="animal-count"><i class="fas fa-book-open"></i> Барои шумора ба мониторинг ва Китоби Сурх муроҷиат кунед</span>
+<span class="animal-location"><i class="fas fa-map-marker-alt"></i> Мурғоб, Помири Шарқӣ</span>
+</div>
+</div>
+</div>
+<div class="animal-card animate-on-scroll delay-2 detail-card" data-detail="brown-bear" role="button" tabindex="0">
+<div class="animal-photo-wrap">
+<div class="visual-placeholder animal-placeholder"><span class="visual-icon">🐾</span><span>Намуди зисти ҳайвоноти Тоҷикистон</span></div>
+<span class="animal-badge warn-badge">Ҳифзшаванда</span>
+</div>
+<div class="animal-details">
+<h3>Хирси Қаҳваранг</h3>
+<span class="animal-latin">Ursus arctos isabellinus</span>
+<p>Дар ҷангалзорҳои кӯҳӣ ва дараҳои сарсабзи Зарафшону Ромит зиндагӣ мекунад ва нақши муҳим дар экосистема дорад. Маълумоти шумора бе санади расмии нав дар ин саҳифа нишон дода намешавад.</p>
+<div class="animal-footer">
+<span class="animal-count"><i class="fas fa-book-open"></i> Барои шумора ба мониторинг ва Китоби Сурх муроҷиат кунед</span>
+<span class="animal-location"><i class="fas fa-map-marker-alt"></i> Ромит, Тавилдара</span>
+</div>
+</div>
+</div>
+<div class="animal-card animate-on-scroll delay-3 detail-card" data-detail="golden-eagle" role="button" tabindex="0">
+<div class="animal-photo-wrap">
+<div class="visual-placeholder animal-placeholder"><span class="visual-icon">🐾</span><span>Намуди зисти ҳайвоноти Тоҷикистон</span></div>
+<span class="animal-badge good-badge">Амн</span>
+</div>
+<div class="animal-details">
+<h3>Шоҳуқоб (Уқоби Тиллоӣ)</h3>
+<span class="animal-latin">Aquila chrysaetos</span>
+<p>Сарвари фазои кӯҳҳои Тоҷикистон. Дар баландтарин қояҳо лона гузошта, сарҳади осмони табиатро муҳофизат мекунад. Маълумоти шумора бе санади расмии нав дар ин саҳифа нишон дода намешавад.</p>
+<div class="animal-footer">
+<span class="animal-count"><i class="fas fa-book-open"></i> Барои шумора ба мониторинг ва Китоби Сурх муроҷиат кунед</span>
+<span class="animal-location"><i class="fas fa-map-marker-alt"></i> Ҳамаи кӯҳсор</span>
+</div>
+</div>
+</div>
+<div class="animal-card animate-on-scroll delay-4 detail-card" data-detail="wolf" role="button" tabindex="0">
+<div class="animal-photo-wrap">
+<div class="visual-placeholder animal-placeholder"><span class="visual-icon">🌿</span><span>Муҳити зисти ин намуд дар Тоҷикистон — тасвири худи ҳайвон ҳанӯз тасдиқ нашудааст</span></div><span class="animal-badge good-badge">Устувор</span>
+</div>
+<div class="animal-details">
+<h3>Гурги Кӯҳии Помирӣ</h3>
+<span class="animal-latin">Canis lupus</span>
+<p>Санитари воқеии табиат, ки тавозуни биологиро дар байни ҳайвонот нигоҳ медорад ва табиатро аз бемориҳо пок мекунад. Маълумоти шумора бе санади расмии нав дар ин саҳифа нишон дода намешавад.</p>
+<div class="animal-footer">
+<span class="animal-count"><i class="fas fa-book-open"></i> Барои шумора ба мониторинг ва Китоби Сурх муроҷиат кунед</span>
+<span class="animal-location"><i class="fas fa-map-marker-alt"></i> Бадахшон, Хатлон</span>
+</div>
+</div>
+</div>
+<div class="animal-card animate-on-scroll delay-5 detail-card" data-detail="bukhara-deer" role="button" tabindex="0">
+<div class="animal-photo-wrap">
+<div class="visual-placeholder animal-placeholder"><span class="visual-icon">🌿</span><span>Муҳити зисти ин намуд дар Тоҷикистон — тасвири худи ҳайвон ҳанӯз тасдиқ нашудааст</span></div><span class="animal-badge danger-badge">Нодир</span>
+</div>
+<div class="animal-details">
+<h3>Оҳуи Бухороӣ (Хангул)</h3>
+<span class="animal-latin">Cervus elaphus bactrianus</span>
+<p>Дар мамнӯъгоҳи машҳури «Бешаи Палангон» парвариш меёбад ва яке аз зеботарин оҳувони Осиёи Марказӣ мебошад. Маълумоти шумора бе санади расмии нав дар ин саҳифа нишон дода намешавад.</p>
+<div class="animal-footer">
+<span class="animal-count"><i class="fas fa-book-open"></i> Барои шумора ба мониторинг ва Китоби Сурх муроҷиат кунед</span>
+<span class="animal-location"><i class="fas fa-map-marker-alt"></i> Бешаи Палангон</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="page-footer-nav container">
+<button class="btn-prev-page" onclick="switchPage('rohihall')">
+<i class="fas fa-arrow-left"></i> Бахши Роҳи Ҳалл
+      </button>
+<button class="btn-next-page" onclick="switchPage('gallery')">
+        Саҳифаи Баъдӣ: Галерея <i class="fas fa-arrow-right"></i>
+</button>
+</div>
+</div>
+<!-- ==============================================================
+       САҲИФАИ 6: ГАЛЕРЕЯИ АКСҲОИ ТАБИАТИ ТОҶИКИСТОН (GALLERY)
+  ============================================================== -->
+<div class="site-page" id="page-gallery">
+<div class="page-header-banner">
+<div class="container">
+<div class="page-breadcrumb">
+<span onclick="switchPage('home')">Асосӣ</span> <i class="fas fa-angle-right"></i> <strong>Галереяи Аксҳо</strong>
+</div>
+<h1>Галереяи Аксҳои Табиати Тоҷикистон</h1>
+<p>Барои калон дидани ҳар як тасвир ва маълумоти пурраи он, рӯи акс пахш намоед</p>
+</div>
+</div>
+<section class="section">
+<div class="container">
+<!-- Тугмаҳои филтр -->
+<div class="gallery-filters">
+<button class="filter-btn active" onclick="filterGallery('all', event)">Ҳамаи Аксҳо</button>
+<button class="filter-btn" onclick="filterGallery('mountain', event)">🏔️ Кӯҳҳо ва Қуллаҳо</button>
+<button class="filter-btn" onclick="filterGallery('water', event)">🌊 Кӯлҳо ва Дарёҳо</button>
+<button class="filter-btn" onclick="filterGallery('nature', event)">🌿 Ҷангалу Наботот</button>
+<button class="filter-btn" onclick="filterGallery('action', event)">☀️ Иқдоми Сабз</button>
+</div>
+<div class="gallery-grid" id="galleryGrid"><div class="gallery-item animate-on-scroll" data-cat="water" onclick="openLightbox('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Tajikistan._Iskander-Kul.jpg/1280px-Tajikistan._Iskander-Kul.jpg','Кӯли Искандаркӯл','Кӯли Искандаркӯл дар ноҳияи Айнӣ, вилояти Суғд. Акс: Dan Lundberg, CC BY-SA 2.0.')"><img alt="Кӯли Искандаркӯл — Кӯҳҳои Фон, вилояти Суғд" class="gal-img" decoding="async" loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Tajikistan._Iskander-Kul.jpg/1280px-Tajikistan._Iskander-Kul.jpg"/><div class="gal-overlay"><i class="fas fa-search-plus"></i><h4>Кӯли Искандаркӯл</h4><span>Кӯҳҳои Фон, вилояти Суғд</span></div></div><div class="gallery-item animate-on-scroll" data-cat="mountain" onclick="openLightbox('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Pamir_Mountains_%286%29.jpg/1280px-Pamir_Mountains_%286%29.jpg','Кӯҳҳои Помир','Манзараи кӯҳҳои Помир. Акс: AmanovDmitry, CC BY 3.0.')"><img alt="Кӯҳҳои Помир — Вилояти Мухтори Кӯҳистони Бадахшон" class="gal-img" decoding="async" loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Pamir_Mountains_%286%29.jpg/1280px-Pamir_Mountains_%286%29.jpg"/><div class="gal-overlay"><i class="fas fa-search-plus"></i><h4>Кӯҳҳои Помир</h4><span>Вилояти Мухтори Кӯҳистони Бадахшон</span></div></div><div class="gallery-item animate-on-scroll" data-cat="water" onclick="openLightbox('https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Lake_Sarez%2C_Tajikistan_%282077%29.jpg/1280px-Lake_Sarez%2C_Tajikistan_%282077%29.jpg','Кӯли Сарез','Кӯли Сарез дар Помир. Акс: NASA, домени ҷамъиятӣ.')"><img alt="Кӯли Сарез — Помири шарқӣ, Бадахшон" class="gal-img" decoding="async" loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Lake_Sarez%2C_Tajikistan_%282077%29.jpg/1280px-Lake_Sarez%2C_Tajikistan_%282077%29.jpg"/><div class="gal-overlay"><i class="fas fa-search-plus"></i><h4>Кӯли Сарез</h4><span>Помири шарқӣ, Бадахшон</span></div></div><div class="gallery-item animate-on-scroll" data-cat="water" onclick="openLightbox('https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Karakul_lake_Tajikistan.jpg/1280px-Karakul_lake_Tajikistan.jpg','Кӯли Қарокӯл','Кӯли Қарокӯл дар Помир. Акс: Ekrem Canli, CC BY-SA 3.0.')"><img alt="Кӯли Қарокӯл — Мурғоб, Бадахшон" class="gal-img" decoding="async" loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Karakul_lake_Tajikistan.jpg/1280px-Karakul_lake_Tajikistan.jpg"/><div class="gal-overlay"><i class="fas fa-search-plus"></i><h4>Кӯли Қарокӯл</h4><span>Мурғоб, Бадахшон</span></div></div><div class="gallery-item animate-on-scroll" data-cat="water" onclick="openLightbox('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Nurek_Reservoir%2C_Tajikistan.jpg/1280px-Nurek_Reservoir%2C_Tajikistan.jpg','Обанбори Норак','Обанбори Норак. Акс: Nikolamikovic82, CC0 1.0.')"><img alt="Обанбори Норак — Дарёи Вахш, вилояти Хатлон" class="gal-img" decoding="async" loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Nurek_Reservoir%2C_Tajikistan.jpg/1280px-Nurek_Reservoir%2C_Tajikistan.jpg"/><div class="gal-overlay"><i class="fas fa-search-plus"></i><h4>Обанбори Норак</h4><span>Дарёи Вахш, вилояти Хатлон</span></div></div><div class="gallery-item animate-on-scroll" data-cat="nature" onclick="openLightbox('https://commons.wikimedia.org/wiki/Special:FilePath/Tigrovaya_Balka_Elaeagnus_Grove.jpg?width=1000','Ҷангали туғайи Бешаи палангон','Мамнуъгоҳи Тигровая Балка. Акс: Zolfeqar Fatihzadeh, CC BY-SA 4.0.')"><img alt="Ҷангали туғайи Бешаи палангон — Ноҳияи Дӯстӣ, вилояти Хатлон" class="gal-img" decoding="async" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Tigrovaya_Balka_Elaeagnus_Grove.jpg?width=1000"/><div class="gal-overlay"><i class="fas fa-search-plus"></i><h4>Ҷангали туғайи Бешаи палангон</h4><span>Ноҳияи Дӯстӣ, вилояти Хатлон</span></div></div><div class="gallery-item animate-on-scroll" data-cat="mountain" onclick="openLightbox('https://upload.wikimedia.org/wikipedia/commons/e/ee/Fedchenko_Glacier.jpg','Пиряхи Федченко','Тасвири моҳворавии пиряхи Федченко. Акс: NASA, домени ҷамъиятӣ.')"><img alt="Пиряхи Федченко — Помир, Тоҷикистон" class="gal-img" decoding="async" loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Fedchenko_Glacier.jpg"/><div class="gal-overlay"><i class="fas fa-search-plus"></i><h4>Пиряхи Федченко</h4><span>Помир, Тоҷикистон</span></div></div></div>
+</div>
+</section>
+<div class="page-footer-nav container">
+<button class="btn-prev-page" onclick="switchPage('hayvonot')">
+<i class="fas fa-arrow-left"></i> Бахши Ҳайвонот
+      </button>
+<button class="btn-next-page" onclick="switchPage('xarita')">
+        Саҳифаи Баъдӣ: Харита <i class="fas fa-arrow-right"></i>
+</button>
+</div>
+</div>
+<!-- ==============================================================
+       САҲИФАИ 7: ХАРИТАИ МИНТАҚАҲО (XARITA)
+  ============================================================== -->
+<div class="site-page" id="page-xarita">
+<div class="page-header-banner">
+<div class="container">
+<div class="page-breadcrumb">
+<span onclick="switchPage('home')">Асосӣ</span> <i class="fas fa-angle-right"></i> <strong>Харитаи Экологӣ</strong>
+</div>
+<h1>Харитаи Экологии Минтақаҳои Тоҷикистон</h1>
+<p>Рӯи харита ё вилоятҳо пахш кунед, то маълумоти пурраи онҳоро мутолиа кунед</p>
+</div>
+</div>
+<section class="section">
+<div class="container">
+<div class="map-wrapper animate-on-scroll">
+<div class="map-container real-map-container" id="mapContainer"><div aria-label="Харитаи интерактивии Тоҷикистон бо кӯлҳо, обанборҳо ва мамнуъгоҳҳо" id="ecoMap" role="application"></div><div class="map-fallback" id="mapFallback" hidden><strong>Харитаи интерактивӣ бор нашуд.</strong><span>Барои харита пайвасти интернет лозим аст. Бахшҳои дигари сомона бе харита ҳам кор мекунанд.</span><a href="https://www.openstreetmap.org/#map=6/38.7/71.1" target="_blank" rel="noopener noreferrer">Кушодани харитаи Тоҷикистон ↗</a></div><div class="map-attribution-note">Харита аз OpenStreetMap истифода мебарад. Нишонаҳо нуқтаҳои ҷойгиршавиро нишон медиҳанд, на ҳудуди дақиқи мамнуъгоҳҳо.</div></div>
+<div class="map-info-panel"><h3>Кӯлҳо, обанборҳо ва минтақаҳои муҳофизатшаванда</h3><p>Нишонаро пахш кунед, то маълумот ва пайванди манбаъро бинед. Филтрҳо намудҳои объектро ҷудо мекунанд.</p><div aria-label="Филтрҳои харита" class="map-filters" role="group"><button class="map-filter active" data-map-filter="all" type="button">Ҳама</button><button class="map-filter" data-map-filter="water" type="button">Кӯлҳо</button><button class="map-filter" data-map-filter="reservoir" type="button">Обанборҳо</button><button class="map-filter" data-map-filter="protected" type="button">Минтақаҳои муҳофизатшаванда</button></div><div class="map-source-note">Ҷойгиршавии объектҳо аз саҳифаҳои географӣ ва маълумоти объектҳои ҳифзшаванда ҷамъоварӣ шудааст. Нишонаҳоро барои кушодани пайванди манбаъ истифода баред.</div></div>
+</div>
+</div>
+</section>
+<div class="page-footer-nav container">
+<button class="btn-prev-page" onclick="switchPage('gallery')">
+<i class="fas fa-arrow-left"></i> Бахши Галерея
+      </button>
+<button class="btn-next-page" onclick="switchPage('navigariho')">
+        Саҳифаи Баъдӣ: Навигариҳо <i class="fas fa-arrow-right"></i>
+</button>
+</div>
+</div>
+<!-- ==============================================================
+       САҲИФАИ 8: ОХИРИН НАВИГАРИҲОИ ЭКОЛОГӢ (NAVIGARIHO)
+  ============================================================== -->
+<div class="site-page" id="page-navigariho">
+<div class="page-header-banner">
+<div class="container">
+<div class="page-breadcrumb">
+<span onclick="switchPage('home')">Асосӣ</span> <i class="fas fa-angle-right"></i> <strong>Ахбори Экологӣ</strong>
+</div>
+<h1>Охирин Навигариҳои Экологии Тоҷикистон</h1>
+<p>Рӯйдодҳои тоза ва ташаббусҳои муҳим дар соҳаи муҳити зист</p>
+</div>
+</div>
+<section class="section">
+<div class="container">
+<div class="news-grid" id="newsGrid">
+<article class="news-card animate-on-scroll detail-card" data-detail="climate-atlas" role="button" tabindex="0">
+<div class="news-img-box">
+<img alt="Пиряхи Федченко дар Помир — мавзӯи гузориши Атласи иқлимии UNEP" class="news-img" decoding="async" loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Fedchenko_Glacier.jpg"/>
+<span class="news-badge">Ташаббуси Ҷаҳонӣ</span>
+</div>
+<div class="news-body">
+<span class="news-date">02 сентябри 2025</span>
+<h3>Атласи UNEP: тағйирёбии иқлим ва пиряхҳои Тоҷикистон</h3>
+<p>UNEP гузориш дод, ки ҳарорати миёнаи солонаи Тоҷикистон нисбат ба сатҳи пешин 1,2°C боло рафтааст. Дар даҳсолаҳои охир зиёда аз 1 000 пирях пурра аз байн рафтааст.</p>
+<a class="source-link" href="https://tajikistan.un.org/en/300896-tajikistan%E2%80%99s-melting-glaciers-put-water-resources-under-stress-unep-atlas-reveals" rel="noopener noreferrer" target="_blank">Манбаъ: Созмони Милали Муттаҳид / UNEP ↗</a></div>
+</article>
+<article class="news-card animate-on-scroll delay-1 detail-card" data-detail="natural-disasters" role="button" tabindex="0">
+<div class="news-img-box">
+<div class="visual-placeholder"><span class="visual-icon">🌱</span><span>Иқдоми экологӣ — тасвири намунавии маҳаллӣ илова нашудааст</span></div>
+<span class="news-badge">Иқдоми Ҷамъиятӣ</span>
+</div>
+<div class="news-body">
+<span class="news-date">02 сентябри 2025</span>
+<h3>Ҳодисаҳои табиӣ дар солҳои 2020–2023</h3>
+<p>Мувофиқи Атласи UNEP, дар солҳои 2020–2023 дар Тоҷикистон 1 826 офати табиӣ сабт шудааст. Аксари ҳолатҳои фавқулода бо хатарҳои табиӣ, аз ҷумла сел, заминларза, ярч ва тарма алоқаманд буданд.</p>
+<a class="source-link" href="https://tajikistan.un.org/en/300896-tajikistan%E2%80%99s-melting-glaciers-put-water-resources-under-stress-unep-atlas-reveals" rel="noopener noreferrer" target="_blank">Манбаъ: Атласи UNEP оид ба тағйирёбии муҳити зист ↗</a></div>
+</article>
+<article class="news-card animate-on-scroll delay-2 detail-card" data-detail="protected-areas" role="button" tabindex="0">
+<div class="news-img-box">
+<div class="visual-placeholder animal-placeholder"><span class="visual-icon">🐾</span><span>Намуди зисти ҳайвоноти Тоҷикистон</span></div>
+<span class="news-badge">Олами Ҳайвонот</span>
+</div>
+<div class="news-body">
+<span class="news-date">02 сентябри 2025</span>
+<h3>Минтақаҳои муҳофизатшаванда: пешравӣ то соли 2023</h3>
+<p>UNEP қайд мекунад, ки ҳиссаи минтақаҳои муҳофизатшаванда аз 3,6 фоизи ҳудуди кишвар дар соли 1991 то 21,6 фоиз дар соли 2023 расидааст. Ин нишондиҳанда ба чор мамнуъгоҳ, 13 паноҳгоҳ ва се боғи миллӣ дахл дорад.</p>
+<a class="source-link" href="https://tajikistan.un.org/en/300896-tajikistan%E2%80%99s-melting-glaciers-put-water-resources-under-stress-unep-atlas-reveals" rel="noopener noreferrer" target="_blank">Манбаъ: Созмони Милали Муттаҳид / UNEP ↗</a></div>
+</article>
+</div>
+<section class="verified-sources"><h2>Манбаъҳои санҷидашуда</h2><p>Омор ва тавсифи муҳити зист аз ин манбаъҳо гирифта шудаанд. Сол ва таърихи ченкунӣ дар ҳар рақам бояд ба назар гирифта шавад.</p><ul><li><a href="https://tajikistan.un.org/en/300896-tajikistan%E2%80%99s-melting-glaciers-put-water-resources-under-stress-unep-atlas-reveals" rel="noopener noreferrer" target="_blank">Атласи тағйирёбии муҳити зисти Тоҷикистон — UNEP, 2 сентябри 2025 ↗</a></li><li><a href="https://mid.tj/en/main/tajikistan/general-information" rel="noopener noreferrer" target="_blank">Маълумоти умумӣ — Вазорати корҳои хориҷии Ҷумҳурии Тоҷикистон ↗</a></li><li><a href="https://www.fao.org/tajikistan/tajikistan-at-a-glance/en" rel="noopener noreferrer" target="_blank">Маълумоти FAO оид ба Тоҷикистон ↗</a></li><li><a href="https://climate.stat.tj/indicator/II.4?lang=en" rel="noopener noreferrer" target="_blank">Нишондиҳандаи пиряхҳо — Агентии омори назди Президенти ҶТ / Climate Statistics ↗</a></li><li><a href="https://whc.unesco.org/en/tentativelists/2111/" rel="noopener noreferrer" target="_blank">Минтақаи муҳофизатшавандаи Зоркӯл — UNESCO Tentative List ↗</a></li><li><a href="https://commons.wikimedia.org/wiki/Category:Tigrovaya_balka" rel="noopener noreferrer" target="_blank">Мамнуъгоҳи Бешаи палангон — саҳифаи Wikimedia Commons ↗</a></li></ul></section></div>
+</section>
+<div class="page-footer-nav container">
+<button class="btn-prev-page" onclick="switchPage('xarita')">
+<i class="fas fa-arrow-left"></i> Бахши Харита
+      </button>
+<button class="btn-next-page" onclick="switchPage('tamos')">
+        Саҳифаи Баъдӣ: Тамос <i class="fas fa-arrow-right"></i>
+</button>
+</div>
+</div>
+<!-- ==============================================================
+       САҲИФАИ 9: ТАМОС ВА ПЕШНИҲОДҲО (TAMOS)
+  ============================================================== -->
+<div class="site-page" id="page-tamos">
+<div class="page-header-banner">
+<div class="container">
+<div class="page-breadcrumb">
+<span onclick="switchPage('home')">Асосӣ</span> <i class="fas fa-angle-right"></i> <strong>Тамос ва Муроҷиат</strong>
+</div>
+<h1>Бо Мо Дар Тамос Бошед</h1>
+<p>Пешниҳод ё лоиҳаи экологии худро бифиристед ё ба сафи волонтёрон ҳамроҳ шавед</p>
+</div>
+</div>
+<section class="section">
+<div class="container">
+<div class="tamos-wrapper">
+<div class="tamos-info animate-on-scroll">
+<div class="tamos-desc-card">
+<h3><i class="fas fa-leaf"></i> Ҳар Як Қадам Муҳим Аст!</h3>
+<p>Ин сомона портали мустақили иттилоотӣ мебошад, на идораи давлатӣ. Тавассути шакли зер метавонед дар ҳамин браузер пешниҳод ё дархости ҳамкориро сабт кунед.</p>
+</div>
+<div class="contact-cards">
+</div>
+</div>
+<div class="tamos-form-card animate-on-scroll delay-2">
+<form aria-label="Сабти дархост ва пешниҳоди экологӣ" id="contactForm">
+<div class="form-row">
+<div class="form-group">
+<label for="cName"><i class="fas fa-user"></i> Ном ва Насаби Шумо</label>
+<input id="cName" placeholder="Масалан: Фирӯз Ғафуров" required="" type="text"/>
+</div>
+<div class="form-group">
+<label for="cEmail"><i class="fas fa-at"></i> Почтаи Электронӣ</label>
+<input id="cEmail" placeholder="nom@namuna.tj" required="" type="email"/>
+</div>
+</div>
+<div class="form-group">
+<label for="cRegion"><i class="fas fa-map-pin"></i> Минтақаи Шумо</label>
+<select id="cRegion" required="">
+<option value="">Минтақаро интихоб кунед...</option>
+<option value="dushanbe">шаҳри Душанбе</option>
+<option value="sugd">Вилояти Суғд</option>
+<option value="khatlon">Вилояти Хатлон</option>
+<option value="vmkb">ВМКБ (Бадахшон)</option>
+<option value="ntjt">Ноҳияҳои Тобеи Ҷумҳурӣ</option>
+</select>
+</div>
+<div class="form-group">
+<label for="cTopic"><i class="fas fa-tag"></i> Мавзӯи Пешниҳод</label>
+<select id="cTopic" required="">
+<option value="">Мавзӯъро интихоб кунед...</option>
+<option value="tree">🌱 Шинонидани дарахт ва сабзкорӣ</option>
+<option value="waste">🗑️ Гузориш оид ба партовҳои ғайриқонунӣ</option>
+<option value="water">💧 Ҳифзи дарё ё чашма</option>
+<option value="animal">🦅 Ҳимояи ҳайвоноти нодир</option>
+<option value="volunteer">🤝 Дохил шудан ба сафи волонтёрон</option>
+<option value="other">💬 Пешниҳоди дигар</option>
+</select>
+</div>
+<div class="form-group">
+<label for="cMessage"><i class="fas fa-comment-alt"></i> Матни Паём ё Лоиҳа</label>
+<textarea id="cMessage" placeholder="Пешниҳод ё мушкили экологии худро муфассал баён кунед..." required="" rows="4"></textarea>
+</div>
+<div class="form-check"><input id="cConsent" required="True" type="checkbox"/><label for="cConsent">Ман розӣ ҳастам, ки маълумоти воридкардаам барои баррасии ҳамин дархост дар ин браузер сабт шавад.</label><input id="cSubscribe" type="checkbox"/><label for="cSubscribe">Ба навигариҳои экологии Тоҷикистон обуна шавам (ихтиёрӣ)</label></div>
+<button class="btn-submit" type="submit"><i class="fas fa-user-check"></i> Сабти дархост</button>
+<p class="form-privacy-note">Муҳим: ҳоло маълумот танҳо дар localStorage-и ҳамин браузер нигоҳ дошта мешавад. Барои қабули дархост аз дастгоҳҳои дигар сервер ва API-и воқеӣ лозим аст.</p></form>
+</div>
+</div>
+</div>
+</section>
+<div class="page-footer-nav container">
+<button class="btn-prev-page" onclick="switchPage('navigariho')">
+<i class="fas fa-arrow-left"></i> Бахши Навигариҳо
+      </button>
+<button class="btn-next-page" onclick="switchPage('home')">
+        Баргаштан ба Саҳифаи Асосӣ <i class="fas fa-home"></i>
+</button>
+</div>
+</div>
+<div class="site-page" id="page-detail"></div></main>
+<!-- ================================================================
+     ПОЁНИ СОМОНА (FOOTER)
+================================================================ -->
+<footer class="footer">
+<div class="container"><section class="photo-credits"><h4>Истифодаи аксҳо ва иҷозатнома</h4><p>Аксҳо аз Wikimedia Commons гирифта шудаанд. Пеш аз истифодаи минбаъда шартҳои иҷозатномаро дар саҳифаи аслии ҳар файл санҷед.</p><ul><li><a href="https://commons.wikimedia.org/wiki/File:Tajikistan._Iskander-Kul.jpg" rel="noopener noreferrer" target="_blank">Искандаркӯл — Dan Lundberg, CC BY-SA 2.0</a></li><li><a href="https://commons.wikimedia.org/wiki/File:Fedchenko_Glacier.jpg" rel="noopener noreferrer" target="_blank">Пиряхи Федченко — NASA, домени ҷамъиятӣ</a></li><li><a href="https://commons.wikimedia.org/wiki/File:Lake_Sarez,_Tajikistan_(2077).jpg" rel="noopener noreferrer" target="_blank">Кӯли Сарез — NASA, домени ҷамъиятӣ</a></li><li><a href="https://commons.wikimedia.org/wiki/File:Nurek_Reservoir,_Tajikistan.jpg" rel="noopener noreferrer" target="_blank">Обанбори Норак — Nikolamikovic82, CC0 1.0</a></li><li><a href="https://commons.wikimedia.org/wiki/File:Karakul_lake_Tajikistan.jpg" rel="noopener noreferrer" target="_blank">Кӯли Қарокӯл — Ekrem Canli, CC BY-SA 3.0</a></li><li><a href="https://commons.wikimedia.org/wiki/File:Tigrovaya_Balka_Elaeagnus_Grove.jpg" rel="noopener noreferrer" target="_blank">Тигровая Балка — Zolfeqar Fatihzadeh, CC BY-SA 4.0</a></li><li><a href="https://commons.wikimedia.org/wiki/File:Pamir_Mountains_(6).jpg" rel="noopener noreferrer" target="_blank">Кӯҳҳои Помир — AmanovDmitry, CC BY 3.0</a></li></ul></section>
+<div class="footer-top">
+<div class="foot-brand">
+<div class="foot-logo">🌍 Экологияи Тоҷикистон</div>
+<p>Манбаи иттилоотӣ оид ба табиати Тоҷикистон. Рақамҳо бо соли маълумот ва истинод ба сарчашма оварда мешаванд; ин сомона мақоми расмии давлатӣ надорад.</p>
+</div>
+<div class="foot-links">
+<h4>Саҳифаҳои Сомона</h4>
+<ul>
+<li><a href="#home" onclick="switchPage('home', event)"><i class="fas fa-angle-right"></i> Асосӣ</a></li>
+<li><a href="#vaziyat" onclick="switchPage('vaziyat', event)"><i class="fas fa-angle-right"></i> Вазъияти Экологӣ</a></li>
+<li><a href="#mushkilot" onclick="switchPage('mushkilot', event)"><i class="fas fa-angle-right"></i> Мушкилоти Асосӣ</a></li>
+<li><a href="#rohihall" onclick="switchPage('rohihall', event)"><i class="fas fa-angle-right"></i> Роҳҳои Ҳалл</a></li>
+<li><a href="#hayvonot" onclick="switchPage('hayvonot', event)"><i class="fas fa-angle-right"></i> Ҳайвоноти Нодир</a></li>
+</ul>
+</div>
+<div class="foot-links">
+<h4>Бахшҳои Иловагӣ</h4>
+<ul>
+<li><a href="#gallery" onclick="switchPage('gallery', event)"><i class="fas fa-angle-right"></i> Галереяи Аксҳо</a></li>
+<li><a href="#xarita" onclick="switchPage('xarita', event)"><i class="fas fa-angle-right"></i> Харитаи Минтақаҳо</a></li>
+<li><a href="#navigariho" onclick="switchPage('navigariho', event)"><i class="fas fa-angle-right"></i> Охирин Ахбор</a></li>
+<li><a href="#tamos" onclick="switchPage('tamos', event)"><i class="fas fa-angle-right"></i> Тамос ва Волонтёрӣ</a></li>
+</ul>
+</div>
+<div class="foot-contact"><h4>Маълумоти портал</h4><p>Портали мустақили иттилоотӣ — суроға ва телефони расмӣ надорад.</p></div>
+</div>
+<div class="footer-bottom">
+<p>© 2026 Экологияи Тоҷикистон — Ҳамаи ҳуқуқҳо ҳифз карда шудаанд. Барои табиати пок ва ояндаи сабз! 🌿</p>
+</div>
+</div>
+</footer>
+<!-- ================================================================
+     РАВЗАНАИ КАЛОН НАМУДАНИ АКСҲО (LIGHTBOX MODAL)
+================================================================ -->
+<div class="lightbox-modal" id="lightboxModal">
+<div class="lightbox-overlay" onclick="closeLightbox()"></div>
+<div class="lightbox-content">
+<button aria-label="Пӯшидани равзана" class="lightbox-close" onclick="closeLightbox()">✕</button>
+<img alt="" class="lightbox-image" id="lightboxImg" src=""/>
+<div class="lightbox-caption">
+<h3 id="lightboxTitle"></h3>
+<p id="lightboxDesc"></p>
+</div>
+</div>
+</div>
+<!-- ================================================================
+     ОГОҲИҲО (TOAST ВА COOKIE)
+================================================================ -->
+<div class="toast" id="toast">
+<div class="toast-icon" id="toastIcon"><i class="fas fa-check-circle"></i></div>
+<span id="toastMsg"></span>
+</div>
+<div class="cookie-bar" id="cookieBar">
+<span>🍪 Сомона кукиҳоро барои фаъолияти боэътимод ва сабти танзимот истифода мебарад.</span>
+<button onclick="acceptCookies()">Қабул Мекунам</button>
+</div>
+<!-- Пайвасти файли мантиқии JavaScript -->
+<script crossorigin="" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script src="script.js"></script></body>
+</html>
